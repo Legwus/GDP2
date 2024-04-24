@@ -1,0 +1,9 @@
+INDEX VERSION 1.134+/home/przemek/eclipse-workspace/.metadata/.plugins/org.eclipse.jdt.core
+3703194086.index
+1684663319.index
+1798185758.index
+4187792807.index
+4160703516.index
+1865797976.index
+1634307696.index
+958720589.index

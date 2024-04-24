@@ -1,0 +1,16 @@
+
+public class AudioFile {
+
+	
+void parsePathname(String path) {
+	
+}
+String getPathname() {
+	
+}
+String getFilename() {
+	
+	
+}
+
+}

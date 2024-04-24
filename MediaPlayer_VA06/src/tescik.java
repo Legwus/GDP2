@@ -1,0 +1,13 @@
+
+public class tescik {
+	private int x = 2;
+void parseName() {
+	
+	System.out.println("chuj");
+}
+	
+	public static void main(String[] args) {
+	tescik test = new tescik();
+	System.out.println(test.x);
+	}
+}

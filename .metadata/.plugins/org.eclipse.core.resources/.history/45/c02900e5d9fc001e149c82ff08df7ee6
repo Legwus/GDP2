@@ -1,0 +1,21 @@
+
+public class AudioFile {
+
+	int chuj = 7;
+	
+void parsePathname(String path) {
+	
+}
+String getPathname() {
+	
+}
+String getFilename() {
+	
+	
+}
+
+
+public static void main(String[] args) {
+System.out.println("chuj");
+}
+}
