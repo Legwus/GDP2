@@ -1,0 +1,51 @@
+import studiplayer.basic.WavParamReader;
+
+public class WavFile extends SampledFile {
+		private static long durationResult = 0;
+		public WavFile() {
+
+		}
+
+		public WavFile(String path) {
+			this.parsePathname(path);
+			//this.parseFilename(filename);
+		}
+
+		public void readAndSetDurationFromFile() {
+			WavParamReader.readParams(getPathname());
+			
+			WavParamReader.getFrameRate();
+			WavParamReader.getNumberOfFrames();
+			
+		}
+
+	
+		public String toString() {
+			return null;
+		}
+
+		public static long computeDuration(long numberOfFrames, float frameRate) {
+			durationResult = (long) ((WavParamReader.getNumberOfFrames()/WavParamReader.getFrameRate())*1000000);
+			return durationResult;
+		}
+		public long getDuration() {
+			computeDuration(WavParamReader.getNumberOfFrames(),WavParamReader.getFrameRate()*1000000);
+			return durationResult;
+		}
+		public static String timeFormatter(long timeInMicroSeconds) {
+			WavFile wf = new WavFile();
+			long durationInSeconds = wf.getDuration()/1000000;
+			float durationInMinutesAndSeconds = durationInSeconds/60;
+			String durationFloat = Float.toString(durationInMinutesAndSeconds);
+			String[] durationString = durationFloat.split("\\.");
+	//		String durationString = String.valueOf(wf.getDuration());
+			return durationString;
+		}
+		@Override
+		public void togglePlay() {
+			// TODO Auto-generated method stub
+			
+		}
+
+
+	}

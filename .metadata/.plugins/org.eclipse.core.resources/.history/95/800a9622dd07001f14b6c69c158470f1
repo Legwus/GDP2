@@ -1,0 +1,38 @@
+import studiplayer.basic.WavParamReader;
+
+public class WavFile extends SampledFile {
+		public WavFile() {
+
+		}
+
+		public WavFile(String path) {
+			this.parsePathname(path);
+			//this.parseFilename(filename);
+		}
+
+		public void readAndSetDurationFromFile() {
+			WavParamReader.readParams(getPathname());
+			
+			WavParamReader.getFrameRate();
+			WavParamReader.getNumberOfFrames();
+			
+		}
+
+	
+		public String toString() {
+			return null;
+		}
+
+		public static long computeDuration(long numberOfFrames, float frameRate) {
+			long result = (long) (WavParamReader.getNumberOfFrames()*WavParamReader.getFrameRate());
+			return result;
+		}
+
+		@Override
+		public void togglePlay() {
+			// TODO Auto-generated method stub
+			
+		}
+
+
+	}

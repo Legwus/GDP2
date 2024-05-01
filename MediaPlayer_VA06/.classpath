@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="cert"/>
 	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="src" path="lib"/>
+	<classpathentry kind="src" path="audiofiles"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="/home/przemek/eclipse-workspace/MediaPlayer_VA06/lib/jl1.0.jar"/>
+	<classpathentry kind="lib" path="/home/przemek/eclipse-workspace/MediaPlayer_VA06/lib/jogg-0.0.7.jar"/>
+	<classpathentry kind="lib" path="/home/przemek/eclipse-workspace/MediaPlayer_VA06/lib/jorbis-0.0.15.jar"/>
+	<classpathentry kind="lib" path="/home/przemek/eclipse-workspace/MediaPlayer_VA06/lib/mp3spi1.9.5.jar"/>
+	<classpathentry kind="lib" path="/home/przemek/eclipse-workspace/MediaPlayer_VA06/lib/studiplayer.jar"/>
+	<classpathentry kind="lib" path="/home/przemek/eclipse-workspace/MediaPlayer_VA06/lib/tritonus_share.jar"/>
+	<classpathentry kind="lib" path="/home/przemek/eclipse-workspace/MediaPlayer_VA06/lib/vorbisspi1.0.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

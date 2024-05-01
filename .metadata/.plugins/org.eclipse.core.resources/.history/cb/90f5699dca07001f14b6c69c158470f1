@@ -1,0 +1,40 @@
+public abstract class SampledFile extends AudioFile {
+		public SampledFile() {
+
+		}
+
+		public SampledFile(String path) {
+			this.parsePathname(path);
+		}
+
+		
+		public void play() {
+
+		}
+
+		public void togglePause() {
+
+		}
+
+		
+		public void stop() {
+
+		}
+
+		
+		public String formatDuration() {
+			return null;
+		}
+		
+		public String formatPosition() {
+			return null;
+		}
+
+		public static String timeFormatter(long timeInMicroSeconds) {
+			return null;
+		}
+
+		public long getDuration() {
+			return 0;
+		}
+	}

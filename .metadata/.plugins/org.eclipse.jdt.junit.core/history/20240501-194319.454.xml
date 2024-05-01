@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestSubtaskC" project="MediaPlayer_VA06" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="TestSubtaskC" time="0.024">
+    <testcase name="test_readWavFileParams" classname="TestSubtaskC" time="0.019"/>
+    <testcase name="test_readDuration" classname="TestSubtaskC" time="0.005"/>
+    <testcase name="test_computeDuration" classname="TestSubtaskC" time="0.0"/>
+  </testsuite>
+</testrun>
