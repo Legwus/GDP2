@@ -3,9 +3,7 @@ import java.util.Map;
 import studiplayer.basic.TagReader;
 
 public class TaggedFile extends SampledFile{
-		private String title = "s";
-		private String author = "";
-		private long duration = 0;
+
 		private String album = "";
 	
 		public TaggedFile(){
@@ -14,56 +12,61 @@ public class TaggedFile extends SampledFile{
 
 		public TaggedFile(String path) {
 			this.parsePathname(path);
-			//this.parseFilename(filename);
+			
+			this.parseFilename(getFilename());
+			this.readAndStoreTags();
 		}
 
 		public String getAlbum() {
-			readAndStoreTags();
+			
 			return album;
 		}
 		
-		public String getTitle() {
-			readAndStoreTags();
-			return title;
-		}
-		
-		public long getDuration() {
-			readAndStoreTags();
-			return duration;
-		}
-		
-		public String getAuthor() {
-			readAndStoreTags();
-			return author;
-		}
 
 		public void readAndStoreTags() {
-			TaggedFile tf = new TaggedFile(getPathname());
-			Map<String, Object> tagMap = TagReader.readTags(tf.getPathname());
-			for (String tag : tagMap.keySet()) {
-				Object value = tagMap.get(tag);
-				
-				title = tagMap.get("title").toString();
-				author = tagMap.get("author").toString();
-				String durationString;
-				durationString = tagMap.get("duration").toString();
-				duration = Integer.parseInt(durationString);
-				
-				album = tagMap.get("album").toString();
-
-			}
 			
+				Map<String, Object> tagMap = TagReader.readTags(this.getPathname());										
+				var title = tagMap.get("title");
+				if (title != null) {
+					this.setTitle(title.toString().trim());
+				}else {
+					this.setTitle(getFilename().substring(0,getFilename().lastIndexOf(".")));
+				}
+				var author = tagMap.get("author");
+				if (author != null) {
+					this.setAuthor(author.toString().trim());
+				}
+				//String durationString;
+				var durationString = tagMap.get("duration");
+				
+				if (durationString != null) {
+					var duration = Integer.parseInt(durationString.toString());	
+					this.setDuration(duration);
+				}
+				var album = tagMap.get("album");
+				if (album != null) {
+					this.album = album.toString().trim();
+				}
+				
 		}
 
 		public String toString() {
-			return null;
+			String taggedFileToString = "";
+			if(this.getAuthor() != "") {
+				taggedFileToString = this.getAuthor() + " - ";
+			}
+			
+			taggedFileToString += this.getTitle();
+			
+			if(this.getAlbum() != "") {
+				taggedFileToString += " - " + getAlbum();
+			}
+			
+			taggedFileToString += " - " + TaggedFile.timeFormatter(this.getDuration());
+			
+			return taggedFileToString;
 		}
 
-		@Override
-		public void togglePlay() {
-			// TODO Auto-generated method stub
-
-		}
 
 		
 		

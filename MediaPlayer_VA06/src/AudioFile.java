@@ -9,6 +9,8 @@ public abstract class AudioFile {
 	private String author = "";
 	private String title = "";
 
+
+
 	public AudioFile(String path) {
 		this.parsePathname(path);
 		this.parseFilename(filename);
@@ -22,7 +24,7 @@ public abstract class AudioFile {
 	
 	public abstract void play();
 
-	public abstract void togglePlay();
+	public abstract void togglePause();
 
 	public abstract void stop();
 
@@ -32,7 +34,12 @@ public abstract class AudioFile {
 
 	
 	
-
+	public String toString(){
+		if (getAuthor() == "") {
+			return title;
+		}
+		return author + " - " + title;
+	}
 	
 
 	void parsePathname(String path) {
@@ -115,14 +122,28 @@ public abstract class AudioFile {
 	public String getTitle() {
 		return title;
 	}
-
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
 	public String getPathname() {
 		return pathname;
 	}
 	public String getFilename() {
 		return filename;
 	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
 
+
+	public void setPathname(String pathname) {
+		this.pathname = pathname;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
 
 	public static void main(String[] args) {
 

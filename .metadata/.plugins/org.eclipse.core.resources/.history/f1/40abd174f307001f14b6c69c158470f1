@@ -1,0 +1,52 @@
+import studiplayer.basic.BasicPlayer;
+
+public abstract class SampledFile extends AudioFile {
+		
+		public SampledFile() {
+
+		}
+
+		public SampledFile(String path) {
+			this.parsePathname(path);
+		}
+
+		
+		public void play() {
+			BasicPlayer.play(getPathname());
+		}
+
+		public void togglePause() {
+			BasicPlayer.togglePause();
+		}
+
+		
+		public void stop() {
+			BasicPlayer.stop();
+		}
+
+		
+		public String formatDuration() {
+			//getDuration();
+			return null;
+		}
+		
+		public String formatPosition() {
+			BasicPlayer.getPosition();
+			return null;
+		}
+
+		public static String timeFormatter(long timeInMicroSeconds) {
+//			WavFile wf = new WavFile();			
+//			wf.readAndSetDurationFromFile();
+			return WavFile.timeFormatter(timeInMicroSeconds);
+		}
+
+		public long getDuration() {
+			WavFile wf = new WavFile();
+			
+			return wf.getDuration();
+			
+		}
+		
+
+	}

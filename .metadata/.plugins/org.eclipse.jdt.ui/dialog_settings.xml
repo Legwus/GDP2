@@ -39,8 +39,8 @@
 		<item key="DIALOG_FONT_NAME" value="1|Noto Sans|10.0|0|GTK|1|"/>
 	</section>
 	<section name="NewClassCreationWizard.dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="843"/>
-		<item key="DIALOG_Y_ORIGIN" value="75"/>
+		<item key="DIALOG_X_ORIGIN" value="764"/>
+		<item key="DIALOG_Y_ORIGIN" value="31"/>
 		<item key="DIALOG_WIDTH" value="875"/>
 		<item key="DIALOG_HEIGHT" value="933"/>
 		<item key="DIALOG_FONT_NAME" value="1|Noto Sans|10.0|0|GTK|1|"/>
@@ -58,5 +58,7 @@
 		<item key="DIALOG_WIDTH" value="543"/>
 		<item key="DIALOG_HEIGHT" value="582"/>
 		<item key="DIALOG_FONT_NAME" value="1|Noto Sans|10.0|0|GTK|1|"/>
+	</section>
+	<section name="RenameInformationPopup">
 	</section>
 </section>

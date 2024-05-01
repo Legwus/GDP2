@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TaggedFileTest" project="MediaPlayer_VA06" tests="6" started="6" failures="0" errors="0" ignored="0">
+  <testsuite name="TaggedFileTest" time="0.125">
+    <testcase name="testToString" classname="TaggedFileTest" time="0.046"/>
+    <testcase name="test_readAndStoreTags_01" classname="TaggedFileTest" time="0.019"/>
+    <testcase name="testInvalid" classname="TaggedFileTest" time="0.021"/>
+    <testcase name="testNrAttributes" classname="TaggedFileTest" time="0.015"/>
+    <testcase name="testSuperClass" classname="TaggedFileTest" time="0.016"/>
+    <testcase name="testConstructor" classname="TaggedFileTest" time="0.008"/>
+  </testsuite>
+</testrun>

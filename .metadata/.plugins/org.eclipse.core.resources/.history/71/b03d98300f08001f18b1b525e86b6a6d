@@ -1,0 +1,82 @@
+import java.util.Map;
+
+import studiplayer.basic.TagReader;
+
+public class TaggedFile extends SampledFile{
+		private String title = "";
+		private String author = "";
+		private long duration = 0;
+		private String album = "";
+	
+		public TaggedFile(){
+
+		}
+
+		public TaggedFile(String path) {
+			this.parsePathname(path);
+			
+			this.parseFilename(getFilename());
+			this.readAndStoreTags();
+		}
+
+		public String getAlbum() {
+			
+			return album;
+		}
+		
+		public String getTitle() {
+			
+			return title;
+		}
+		
+		public long getDuration() {
+			
+			return duration;
+		}
+		
+		public String getAuthor() {
+			
+			return author;
+		}
+
+		public void readAndStoreTags() {
+			
+				Map<String, Object> tagMap = TagReader.readTags(this.getPathname());										
+				var title = tagMap.get("title");
+				if (title != null) {
+					this.title = title.toString().trim();
+				}else {
+					title = super.getFilename();
+				}
+				var author = tagMap.get("author");
+				if (author != null) {
+					this.author = author.toString().trim();
+				}
+				//String durationString;
+				var durationString = tagMap.get("duration");
+				
+				if (durationString != null) {
+					var duration = Integer.parseInt(durationString.toString());	
+					this.duration = duration;
+				}
+				var album = tagMap.get("album");
+				if (album != null) {
+					this.album = album.toString().trim();
+				}
+				
+		}
+
+		public String toString() {
+			
+			String taggedFileToString = this.getAuthor() + " - " + this.getTitle();
+			if(this.getAlbum() != "") {
+				taggedFileToString += " - " + getAlbum();
+			}
+			taggedFileToString += " - " + TaggedFile.timeFormatter(this.duration);
+			return taggedFileToString;
+		}
+
+
+		
+		
+	}

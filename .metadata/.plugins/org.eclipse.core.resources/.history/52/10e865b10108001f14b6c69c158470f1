@@ -1,0 +1,60 @@
+import java.util.Map;
+
+import studiplayer.basic.TagReader;
+
+public class TaggedFile extends SampledFile{
+		private String title = "s";
+		private String author = "";
+		private long duration = 0;
+		private String album = "";
+	
+		public TaggedFile(){
+
+		}
+
+		public TaggedFile(String path) {
+			this.parsePathname(path);
+			this.readAndStoreTags();
+			//this.parseFilename(filename);
+		}
+
+		public String getAlbum() {
+			
+			return album;
+		}
+		
+		public String getTitle() {
+			readAndStoreTags();
+			return title;
+		}
+		
+		public long getDuration() {
+			readAndStoreTags();
+			return duration;
+		}
+		
+		public String getAuthor() {
+			readAndStoreTags();
+			return author;
+		}
+
+		public void readAndStoreTags() {
+			
+			Map<String, Object> tagMap = TagReader.readTags(this.getPathname());						
+				title = tagMap.get("title").toString();
+				author = tagMap.get("author").toString();
+				String durationString;
+				durationString = tagMap.get("duration").toString();
+				duration = Integer.parseInt(durationString);				
+				album = tagMap.get("album").toString();
+			
+		}
+
+		public String toString() {
+			return null;
+		}
+
+
+		
+		
+	}

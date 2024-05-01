@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="AudioFileTest" project="MediaPlayer_VA06" tests="9" started="9" failures="0" errors="0" ignored="0">
+  <testsuite name="AudioFileTest" time="0.215">
+    <testcase name="testAbstract" classname="AudioFileTest" time="0.053"/>
+    <testcase name="testGetPathname" classname="AudioFileTest" time="0.027"/>
+    <testcase name="testGetTitle" classname="AudioFileTest" time="0.026"/>
+    <testcase name="testNullTags" classname="AudioFileTest" time="0.027"/>
+    <testcase name="testToString" classname="AudioFileTest" time="0.02"/>
+    <testcase name="testNonExisting" classname="AudioFileTest" time="0.015"/>
+    <testcase name="testAbstractMethods" classname="AudioFileTest" time="0.018"/>
+    <testcase name="testGetFilename" classname="AudioFileTest" time="0.012"/>
+    <testcase name="testGetAuthor" classname="AudioFileTest" time="0.017"/>
+  </testsuite>
+</testrun>

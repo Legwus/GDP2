@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="TestSubtaskA" project="MediaPlayer_VA06" tests="4" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="TestSubtaskA" incomplete="true">
-    <testcase name="testStopSong" classname="TestSubtaskA" time="4.5"/>
-    <testcase name="testPlaySong" classname="TestSubtaskA" incomplete="true"/>
-    <testcase name="testReadablePathname" classname="TestSubtaskA" incomplete="true"/>
-    <testcase name="testPauseSong" classname="TestSubtaskA" incomplete="true"/>
-  </testsuite>
-</testrun>

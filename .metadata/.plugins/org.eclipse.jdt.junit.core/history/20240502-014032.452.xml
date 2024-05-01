@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="WavFileTest" project="MediaPlayer_VA06" tests="7" started="7" failures="0" errors="0" ignored="0">
+  <testsuite name="WavFileTest" time="0.088">
+    <testcase name="test_computeDuration_01" classname="WavFileTest" time="0.026"/>
+    <testcase name="test_readAndSetDurationFromFile_01" classname="WavFileTest" time="0.009"/>
+    <testcase name="testToString" classname="WavFileTest" time="0.013"/>
+    <testcase name="testInvalid" classname="WavFileTest" time="0.016"/>
+    <testcase name="testNrAttributes" classname="WavFileTest" time="0.008"/>
+    <testcase name="testSuperClass" classname="WavFileTest" time="0.009"/>
+    <testcase name="testConstructor" classname="WavFileTest" time="0.005"/>
+  </testsuite>
+</testrun>
