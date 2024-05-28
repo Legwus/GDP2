@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item key="org.eclipse.debug.ui.InspectPopupDialogDIALOG_WIDTH" value="300"/>
-	<item key="org.eclipse.debug.ui.InspectPopupDialogDIALOG_HEIGHT" value="304"/>
+	<item key="org.eclipse.debug.ui.InspectPopupDialogDIALOG_WIDTH" value="1926"/>
+	<item key="org.eclipse.debug.ui.InspectPopupDialogDIALOG_HEIGHT" value="1014"/>
 	<section name="org.eclipse.debug.ui.SELECT_LAUNCH_SHORTCUT_DIALOG">
 		<item key="DIALOG_WIDTH" value="417"/>
 		<item key="DIALOG_HEIGHT" value="525"/>
