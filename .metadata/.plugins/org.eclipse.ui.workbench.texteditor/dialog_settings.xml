@@ -1,26 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="loadFrom"/>
+		<item key="selection" value="getCurrentIndex"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="setCurrent"/>
+			<item value="getFiles"/>
+			<item value="search"/>
+			<item value="filterAnd"/>
+			<item value="comparator"/>
+			<item value="ungen"/>
+			<item value="filter"/>
+			<item value="getCurrent"/>
+			<item value="get"/>
+			<item value="has"/>
+			<item value="iterator"/>
+			<item value="play"/>
 			<item value="loadFrom"/>
 			<item value="LinkedList"/>
 			<item value="kein"/>
-			<item value="throw"/>
-			<item value="toString"/>
-			<item value="extends"/>
 		</list>
 		<list key="replacehistory">
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1282"/>
-		<item key="DIALOG_Y_ORIGIN" value="191"/>
+		<item key="DIALOG_X_ORIGIN" value="1581"/>
+		<item key="DIALOG_Y_ORIGIN" value="207"/>
 		<item key="DIALOG_WIDTH" value="339"/>
 		<item key="DIALOG_HEIGHT" value="395"/>
 		<item key="DIALOG_FONT_NAME" value="1|Noto Sans|10.0|0|GTK|1|"/>

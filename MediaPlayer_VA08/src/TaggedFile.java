@@ -30,7 +30,7 @@ public class TaggedFile extends SampledFile{
 				if (title != null) {
 					this.setTitle(title.toString().trim());
 				}else {
-					this.setTitle(getFilename().substring(0,getFilename().lastIndexOf(".")));
+					this.setTitle(getTitle());
 				}
 				var author = tagMap.get("author");
 				if (author != null) {

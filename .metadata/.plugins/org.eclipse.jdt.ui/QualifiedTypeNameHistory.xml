@@ -5,4 +5,5 @@
     <fullyQualifiedTypeName name="studiplayer.basic.BasicPlayer"/>
     <fullyQualifiedTypeName name="studiplayer.basic.WavParamReader"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="studiplayer.audio.ControllablePlayListIterator"/>
 </qualifiedTypeNameHistroy>
