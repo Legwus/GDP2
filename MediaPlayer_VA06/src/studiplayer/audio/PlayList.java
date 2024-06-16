@@ -26,7 +26,7 @@ public PlayList() {
 
 public PlayList(String m3uPathname){
 	this();
-
+	
 		loadFromM3U(m3uPathname);
 
 	//this.sortCriterion = sortCriterion;
@@ -113,6 +113,9 @@ public void loadFromM3U(String pathname){
 		  try (BufferedReader reader = new BufferedReader(new FileReader(pathname))) {
               String line;
               while ((line = reader.readLine()) != null) {
+            	  if (line.trim().isEmpty() || line.trim().startsWith("#")) {
+                      continue;
+                  }
                   try {
                       AudioFile newFile = AudioFileFactory.createAudioFile(line);
                       add(newFile);

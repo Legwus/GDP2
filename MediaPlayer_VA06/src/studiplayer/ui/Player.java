@@ -22,6 +22,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import studiplayer.audio.NotPlayableException;
 import studiplayer.audio.PlayList;
 import studiplayer.audio.SortCriterion;
 
@@ -42,13 +43,14 @@ private Label currentSongLabel;
 private ChoiceBox sortChoiceBox;
 private TextField searchTextField;
 private Button filterButton;
+private SortCriterion selectedCriterion;
 
 	
 public Player() {
 	
 }
 
-public void start(Stage stage) {
+public void start(Stage stage) throws Exception{
 	
 	BorderPane mainPane = new BorderPane();
 	
@@ -57,31 +59,33 @@ public void start(Stage stage) {
 	stage.setScene(scene);
 	stage.show();
 	
-	Label searchLabel = new Label("Suchen");
+	Label searchLabel = new Label("Search");
 	
     TextField searchTextField = new TextField();
     searchTextField.setPrefWidth(200);
     
-    Label sortLabel = new Label("Sortierung");
+    Label sortLabel = new Label("Sort");
     
-    ComboBox<String> comboBox = new ComboBox<>();
-    comboBox.setPrefWidth(200);
+    ChoiceBox<SortCriterion> choiceBox = new ChoiceBox<>();
+    choiceBox.setPrefWidth(200);
     
     SortCriterion[] values = SortCriterion.values();
     for (SortCriterion value : values) {
     	//value.toString();
-    	comboBox.getItems().add(value.name());
+    	choiceBox.getItems().addAll(value);
     }
     
-    comboBox.setValue(SortCriterion.DEFAULT.toString());
+    choiceBox.setValue(SortCriterion.DEFAULT);
     
-    Button sortButton = new Button("Anzeigen");
+    Button sortButton = new Button("Submit");
+    
+   
 	
     HBox searchHBox = new HBox(40); 
     searchHBox.getChildren().addAll(searchLabel, searchTextField);
     
     HBox sortHBox = new HBox(20);
-    sortHBox.getChildren().addAll(sortLabel, comboBox, sortButton);
+    sortHBox.getChildren().addAll(sortLabel, choiceBox, sortButton);
     
     VBox combinedVBox = new VBox(10);
     combinedVBox.getChildren().addAll(searchHBox, sortHBox);
@@ -103,7 +107,7 @@ public void start(Stage stage) {
     HBox thirdToBottomHBox = new HBox();
     HBox fourthToBottomHBox = new HBox();
     
-    Label playListLabel = new Label("Current Playlist:    " + PLAYLIST_DIRECTORY + this.playList);
+    Label playListLabel = new Label("Current Playlist:    " + PLAYLIST_DIRECTORY + playList);
     Label currentSongLabel = new Label("Current Song:       " + NO_CURRENT_SONG);
     Label currentPlaybackTime = new Label("Time Elapsed:       " + INITIAL_PLAY_TIME_LABEL);
     
@@ -113,9 +117,19 @@ public void start(Stage stage) {
     
     bottomHBox.getChildren().addAll(playButton, pauseButton, stopButton, nextButton);
     bottomHBox.setAlignment(javafx.geometry.Pos.CENTER);
-    PlayList playList = new PlayList("playlists/playList.cert.m3u");
+    //PlayList playList = new PlayList("playlists/playList.cert.m3u");
+    loadPlayList("playlists/playList.cert.m3u");
     SongTable songTable = new SongTable(playList);
-    //songTable.setMaxHeight(500);
+    songTable.setMaxHeight(500);
+    
+    sortButton.setOnAction(event -> {
+    	playList.setSearch(searchTextField.getText());
+    	playList.setSortCriterion(choiceBox.getValue());
+        playList.sortPlayList();
+        songTable.refreshSongs();
+    	// PlayList.setSearch(searchTextField.commitValue().toString());
+    	
+    });
     
     VBox bottomContentVBox = new VBox(0);
     bottomContentVBox.getChildren().addAll(secondToBottomHBox, thirdToBottomHBox, fourthToBottomHBox, bottomHBox);
@@ -147,14 +161,8 @@ public void setPlayList(String pathname) {
 }
 
 public void loadPlayList(String pathname) {
-	
-	if (pathname == null || pathname == "") {
-		PlayList pl = new PlayList(DEFAULT_PLAYLIST);
-		this.playList = pl;
-	} else {
-		PlayList pl = new PlayList(pathname);
-		this.playList = pl;
-	}
+	 playList = new PlayList();
+	 playList.loadFromM3U(pathname);
 }
 
 public void setUseCertPlayList(boolean setUseCertPlayList) {
