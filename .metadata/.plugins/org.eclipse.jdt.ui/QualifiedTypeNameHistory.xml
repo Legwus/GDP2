@@ -6,4 +6,6 @@
     <fullyQualifiedTypeName name="studiplayer.basic.WavParamReader"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="studiplayer.audio.ControllablePlayListIterator"/>
+    <fullyQualifiedTypeName name="javafx.geometry.Pos"/>
+    <fullyQualifiedTypeName name="studiplayer.audio.SortCriterion"/>
 </qualifiedTypeNameHistroy>

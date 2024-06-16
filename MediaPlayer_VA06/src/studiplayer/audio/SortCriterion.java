@@ -5,5 +5,15 @@ public enum SortCriterion {
 	AUTHOR,
 	TITLE,
 	ALBUM,
-	DURATION
+	DURATION;
+	
+	@Override
+	public String toString() {
+	    // Convert enum name to lowercase and then capitalize the first letter
+	    String name = name().toLowerCase();
+	    return name.substring(0, 1).toUpperCase() + name.substring(1);
+	}
 }
+
+
+

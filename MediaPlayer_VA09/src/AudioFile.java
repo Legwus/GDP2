@@ -1,0 +1,151 @@
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+
+public abstract class AudioFile {
+
+	private String pathname = "as";
+	private String filename = "as";
+	private String author = "";
+	private String title = "";
+
+
+
+	public AudioFile(String path) {
+		this.parsePathname(path);
+		this.parseFilename(filename);
+	}
+
+	public AudioFile() {
+
+	}
+
+	
+	
+	public abstract void play();
+
+	public abstract void togglePause();
+
+	public abstract void stop();
+
+	public abstract String formatDuration();
+
+	public abstract String formatPosition();
+
+	
+	
+	public String toString(){
+		if (getAuthor() == "") {
+			return title;
+		}
+		return author + " - " + title;
+	}
+	
+
+	void parsePathname(String path) {
+		pathname = path;
+		filename = pathname;
+		pathname = pathname.replaceAll("/+","/");
+
+		if (!pathname.contains("/")) {
+			pathname = path;
+			filename = path;
+		}
+
+		pathname = pathname.trim();
+		filename = filename.trim();
+		pathname = pathname.replaceAll("\\\\+","/");
+
+		Map<String, String> escapeSequences = new HashMap<>();
+	    escapeSequences.put("\t", "t");
+	    escapeSequences.put("\n", "n");
+	    escapeSequences.put("\r", "r");
+	    escapeSequences.put("\f", "f");
+	    escapeSequences.put("\b", "b");
+
+	    for (Map.Entry<String, String> entry : escapeSequences.entrySet()) {
+	        String key = entry.getKey();
+	        String value = entry.getValue();
+	        pathname = pathname.replaceAll(key, value);
+	    }
+
+		if (pathname.contains(String.valueOf("/"))) {
+			filename = pathname.substring(pathname.lastIndexOf("/")+1);
+		}
+		if (filename.contains(" ")) {
+			filename = filename.trim();
+		}
+
+		if(System.getProperty("os.name") == "Windows") {
+			pathname = pathname.replaceAll("/", "\\\\");
+		} else {
+			int k;
+			 for(k = 65; k<=90; k++) {
+				 pathname = pathname.replaceAll((char) k + ":", "/" + (char) k);
+			}
+		}
+		File nf = new File(pathname);
+		if(nf.canRead() == false) {
+			throw new RuntimeException("wyjebalo sie");
+		}
+	}
+
+	void parseFilename(String file) {
+		 filename = file;
+	     title = filename;
+	      if(filename.contains(" - ")) {
+	             title = "";
+	      }
+	     if(filename.contains(".")) {
+	         String onlyName = filename.substring(0,filename.lastIndexOf("."));
+	         if(filename.contains(" - ")) {
+	             title = "";
+	             String[] filenameArray = onlyName.split(" - ");
+	             title = filenameArray[1].trim();
+	             author = filenameArray[0].trim();
+	         } else {
+	             title = onlyName.trim();
+	         }
+	     }
+
+
+	     if (filename.length() <= 1 && filename.contains(" ")) {
+	    	 title = "";
+	     }
+		System.out.println(filename);
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	public String getPathname() {
+		return pathname;
+	}
+	public String getFilename() {
+		return filename;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+
+	public void setPathname(String pathname) {
+		this.pathname = pathname;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
+	public static void main(String[] args) {
+
+	}
+}

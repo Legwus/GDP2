@@ -19,7 +19,7 @@ private ControllablePlayListIterator iterator;
 public PlayList() {
 	files = new ArrayList<>();
 	this.sortCriterion = SortCriterion.DEFAULT;
-	this.iterator = new ControllablePlayListIterator(files, search, sortCriterion);;
+	this.iterator = new ControllablePlayListIterator(files, search, sortCriterion);
 }
 
 
