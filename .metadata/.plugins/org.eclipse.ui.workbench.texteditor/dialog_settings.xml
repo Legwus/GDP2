@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=""/>
+		<item key="selection" value="refresh"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="refresh"/>
+			<item value="CertPlay"/>
+			<item value="Cert"/>
+			<item value="terminate"/>
+			<item value="start"/>
+			<item value="getSelectionModel"/>
 			<item value="setPlay"/>
 			<item value="launch"/>
 			<item value="setCurrent"/>
@@ -17,19 +23,13 @@
 			<item value="comparator"/>
 			<item value="ungen"/>
 			<item value="filter"/>
-			<item value="getCurrent"/>
-			<item value="get"/>
-			<item value="has"/>
-			<item value="iterator"/>
-			<item value="play"/>
-			<item value="loadFrom"/>
 		</list>
 		<list key="replacehistory">
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1581"/>
-		<item key="DIALOG_Y_ORIGIN" value="207"/>
+		<item key="DIALOG_X_ORIGIN" value="1541"/>
+		<item key="DIALOG_Y_ORIGIN" value="342"/>
 		<item key="DIALOG_WIDTH" value="339"/>
 		<item key="DIALOG_HEIGHT" value="395"/>
 		<item key="DIALOG_FONT_NAME" value="1|Noto Sans|10.0|0|GTK|1|"/>
