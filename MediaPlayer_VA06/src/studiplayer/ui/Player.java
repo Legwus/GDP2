@@ -32,6 +32,7 @@ private static final String INITIAL_PLAY_TIME_LABEL = "00:00";
 private static final String NO_CURRENT_SONG = "-";
 public static final String DEFAULT_PLAYLIST = "playlists/DefaultPlayList.m3u";
 private PlayList playList;
+private SongTable songTable;
 private boolean useCertPlayList = false;
 private Button playButton;
 private Button pauseButton;
@@ -40,8 +41,9 @@ private Button nextButton;
 private Label playListLabel;
 private Label playTimeLabel;
 private Label currentSongLabel;
-private ChoiceBox sortChoiceBox;
+private ChoiceBox<SortCriterion> sortChoiceBox;
 private TextField searchTextField;
+private Label sortLabel;
 private Button filterButton;
 private SortCriterion selectedCriterion;
 
@@ -61,23 +63,23 @@ public void start(Stage stage) throws Exception{
 	
 	Label searchLabel = new Label("Search");
 	
-    TextField searchTextField = new TextField();
+    searchTextField = new TextField();
     searchTextField.setPrefWidth(200);
     
-    Label sortLabel = new Label("Sort");
+    sortLabel = new Label("Sort");
     
-    ChoiceBox<SortCriterion> choiceBox = new ChoiceBox<>();
-    choiceBox.setPrefWidth(200);
+    sortChoiceBox = new ChoiceBox<>();
+    sortChoiceBox.setPrefWidth(200);
     
     SortCriterion[] values = SortCriterion.values();
     for (SortCriterion value : values) {
     	//value.toString();
-    	choiceBox.getItems().addAll(value);
+    	sortChoiceBox.getItems().addAll(value);
     }
     
-    choiceBox.setValue(SortCriterion.DEFAULT);
+    sortChoiceBox.setValue(SortCriterion.DEFAULT);
     
-    Button sortButton = new Button("Submit");
+    filterButton = new Button("Submit");
     
    
 	
@@ -85,7 +87,7 @@ public void start(Stage stage) throws Exception{
     searchHBox.getChildren().addAll(searchLabel, searchTextField);
     
     HBox sortHBox = new HBox(20);
-    sortHBox.getChildren().addAll(sortLabel, choiceBox, sortButton);
+    sortHBox.getChildren().addAll(sortLabel, sortChoiceBox, filterButton);
     
     VBox combinedVBox = new VBox(10);
     combinedVBox.getChildren().addAll(searchHBox, sortHBox);
@@ -96,10 +98,10 @@ public void start(Stage stage) throws Exception{
     
     HBox bottomHBox = new HBox(10);
     
-    Button playButton = createButton("play.jpg");
-    Button pauseButton = createButton("pause.jpg");
-    Button stopButton = createButton("stop.jpg");
-    Button nextButton = createButton("next.jpg");
+    playButton = createButton("play.jpg");
+    pauseButton = createButton("pause.jpg");
+    stopButton = createButton("stop.jpg");
+    nextButton = createButton("next.jpg");
     
     
     
@@ -107,29 +109,58 @@ public void start(Stage stage) throws Exception{
     HBox thirdToBottomHBox = new HBox();
     HBox fourthToBottomHBox = new HBox();
     
-    Label playListLabel = new Label("Current Playlist:    " + PLAYLIST_DIRECTORY + playList);
-    Label currentSongLabel = new Label("Current Song:       " + NO_CURRENT_SONG);
-    Label currentPlaybackTime = new Label("Time Elapsed:       " + INITIAL_PLAY_TIME_LABEL);
+    playListLabel = new Label("Current Playlist:    " + PLAYLIST_DIRECTORY + playList);
+    currentSongLabel = new Label("Current Song:       " + NO_CURRENT_SONG);
+    playTimeLabel = new Label("Time Elapsed:       " + INITIAL_PLAY_TIME_LABEL);
     
     secondToBottomHBox.getChildren().addAll(playListLabel);
     thirdToBottomHBox.getChildren().addAll(currentSongLabel);
-    fourthToBottomHBox.getChildren().addAll(currentPlaybackTime);
+    fourthToBottomHBox.getChildren().addAll(playTimeLabel);
     
     bottomHBox.getChildren().addAll(playButton, pauseButton, stopButton, nextButton);
     bottomHBox.setAlignment(javafx.geometry.Pos.CENTER);
     //PlayList playList = new PlayList("playlists/playList.cert.m3u");
     loadPlayList("playlists/playList.cert.m3u");
-    SongTable songTable = new SongTable(playList);
+    songTable = new SongTable(playList);
     songTable.setMaxHeight(500);
     
-    sortButton.setOnAction(event -> {
+    songTable.setRowSelectionHandler(event ->  {
+    	if(event.getClickCount() == 2) {
+    		System.out.println(songTable.getSelectionModel().getSelectedItem().getAudioFile());
+    		var song = songTable.getSelectionModel().getSelectedItem().getAudioFile();    		
+    		playList.jumpToAudioFile(song);
+    		try {
+				playCurrentSong();
+			} catch (NotPlayableException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    });
+    
+    
+  //  songTable.getSelectionModel().getSelectedItem().getAudioFile();
+    
+    filterButton.setOnAction(event -> {
     	playList.setSearch(searchTextField.getText());
-    	playList.setSortCriterion(choiceBox.getValue());
+    	playList.setSortCriterion(sortChoiceBox.getValue());
         playList.sortPlayList();
         songTable.refreshSongs();
     	// PlayList.setSearch(searchTextField.commitValue().toString());
     	
     });
+    
+    playButton.setOnAction(e -> {
+    	try {
+			playCurrentSong();
+		} catch (NotPlayableException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    	});
+    
+    
+    
     
     VBox bottomContentVBox = new VBox(0);
     bottomContentVBox.getChildren().addAll(secondToBottomHBox, thirdToBottomHBox, fourthToBottomHBox, bottomHBox);
@@ -145,7 +176,28 @@ public void start(Stage stage) throws Exception{
     
 }
 
+public void playCurrentSong() throws NotPlayableException{
+	playTimeLabel.setText(INITIAL_PLAY_TIME_LABEL);
+	currentSongLabel.setText(playList.currentAudioFile().toString());
+	playList.currentAudioFile().play();		
+}
 
+public void stopCurrentSong(){
+	playList.currentAudioFile().stop();
+	playTimeLabel.setText(INITIAL_PLAY_TIME_LABEL);
+}
+
+public void pauseCurrentSong(){
+	playList.currentAudioFile().togglePause();
+}
+
+public void skipCurrentSong() throws NotPlayableException{
+	stopCurrentSong();
+	playList.nextSong();
+	playTimeLabel.setText(INITIAL_PLAY_TIME_LABEL);
+	currentSongLabel.setText(playList.currentAudioFile().toString());
+	playCurrentSong();
+}
 
 public static void main(String[] args) {
 	launch();
